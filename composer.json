@@ -1,22 +1,26 @@
 {
-    "name": "cayetanosoriano/hashids-bundle",
-    "description": "Bundle for integration of hashids lib to the container",
-    "keywords": ["hashids"],
-    "type": "symfony-bundle",
-    "minimum-stability": "stable",
-    "license": "MIT",
-    "require": {
-        "hashids/hashids": "~1.0",
-        "symfony/framework-bundle": ">= 2.1.0"
-        },
-    "authors": [
-        {
-            "name": "Cayetano Soriano",
-            "email": "neoshadybeat@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-0": { "cayetanosoriano\\HashidsBundle": "" }
-    },
-    "target-dir": "cayetanosoriano/HashidsBundle"
+  "name": "hbryan/hashids-bundle",
+  "description": "Bundle for integration of hashids lib to the container",
+  "keywords": [
+    "hashids"
+  ],
+  "type": "symfony-bundle",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "require": {
+    "hashids/hashids": "~3.0",
+    "symfony/framework-bundle": "~4"
+  },
+  "authors": [
+    {
+      "name": "Cayetano Soriano",
+      "email": "neoshadybeat@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "cayetanosoriano\\HashidsBundle": ""
+    }
+  },
+  "target-dir": "cayetanosoriano/HashidsBundle"
 }
