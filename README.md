@@ -15,7 +15,7 @@ your dependencies in a `composer.json` file:
 ```json
 {
     "require": {
-        "cayetanosoriano/hashids-bundle": "dev-master"
+        "hbryan/hashids-bundle": "~2.0"
     }
 }
 ```
