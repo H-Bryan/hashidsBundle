@@ -7,27 +7,7 @@ hashidsBundle
 
 ## Installation
 
-#### Symfony 2.1.x <= 2.4.x: Composer
-
-[Composer](http://packagist.org/about-composer) is a project dependency manager for PHP. You have to list
-your dependencies in a `composer.json` file:
-
-```json
-{
-    "require": {
-        "hbryan/hashids-bundle": "~2.0"
-    }
-}
-```
-To actually install in your project, download the composer binary and run it:
-
-```bash
-wget http://getcomposer.org/composer.phar
-# or
-curl -O http://getcomposer.org/composer.phar
-
-php composer.phar install
-```
+`composer require hbryan/hashids-bundle`
 
 ### Step 2: Enable the bundle
 
