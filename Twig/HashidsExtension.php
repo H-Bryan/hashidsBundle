@@ -3,13 +3,15 @@
 namespace cayetanosoriano\HashidsBundle\Twig;
 
 use Hashids\Hashids;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 /**
  * Twig extension to allow encoding and decoding Hashids
  *
  * @author Jaik Dean <jaik@fluoresce.co>
  */
-class HashidsExtension extends \Twig_Extension
+class HashidsExtension extends AbstractExtension
 {
     /**
      * @var Hashids\Hashids;
@@ -24,8 +26,8 @@ class HashidsExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('hashid_encode', [$this, 'encode']),
-            new \Twig_SimpleFilter('hashid_decode', [$this, 'decode']),
+            new TwigFilter('hashid_encode', [$this, 'encode']),
+            new TwigFilter('hashid_decode', [$this, 'decode']),
         ];
     }
 
