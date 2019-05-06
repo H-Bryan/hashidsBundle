@@ -2,9 +2,11 @@
 
 namespace cayetanosoriano\HashidsBundle\Request\ParamConverter;
 
-use Hashids\Hashids;
+use Hashids\HashidsInterface;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -13,30 +15,29 @@ use Symfony\Component\HttpFoundation\Request;
 class HashidsDoctrineParamConverter extends DoctrineParamConverter
 {
     /**
-     * @var Hashids\Hashids
+     * @var Hashids\HashidsInterface
      */
     protected $hashids;
 
-    public function __construct(Hashids $hashids, ManagerRegistry $registry = null)
+    public function __construct(ManagerRegistry $registry = null, ExpressionLanguage $expressionLanguage = null, HashidsInterface $hashids, array $options = [])
     {
         $this->hashids = $hashids;
         parent::__construct($registry);
     }
 
-    protected function getIdentifier(Request $request, $options, $name)
+    public function apply(Request $request, ParamConverter $configuration)
     {
-        // Default to the standard DoctrineParamConverter behaviour
-        $parent = parent::getIdentifier($request, $options, $name);
+        try {
+            return parent::apply($request, $configuration);
+        } catch (\Exception $e) {
+            if ($request->attributes->has('hashid')) {
+                $request->attributes->set(
+                    $configuration->getName(),
+                    $this->hashids->decode($request->attributes->get('hashid'))[0]
+                );
 
-        if ($parent !== false) {
-            return $parent;
-        }
-
-        // If an identifier wasn’t found, check for a Hashid
-        if ($request->attributes->has('hashid')) {
-            $id = $request->attributes->get('hashid');
-            $decoded = $this->hashids->decode($id);
-            return $decoded[0];
+                return parent::apply($request, $configuration);
+            }
         }
 
         return false;
